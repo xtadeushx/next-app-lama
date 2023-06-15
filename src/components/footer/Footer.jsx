@@ -20,7 +20,9 @@ const Footer = () => {
         <Link href='https://www.instagram.com/' target="_blank">
           <Image src="/2.png" width={15} height={15} className={styles.icon} alt="Lama Dev" />
         </Link>
-        <Image src="/3.png" width={15} height={15} className={styles.icon} alt="Lama Dev" />
+        <Link href='' target="_blank">
+          <Image src="/3.png" width={15} height={15} className={styles.icon} alt="Lama Dev" />
+        </Link>
       </div>
     </div>
   );
