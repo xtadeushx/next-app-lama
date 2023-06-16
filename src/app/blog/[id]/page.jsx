@@ -1,14 +1,29 @@
-import React from 'react'
-import styles from './page.module.css'
-import Image from 'next/image'
-const BlogPost = () => {
+import React from 'react';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+
+import styles from './page.module.css';
+
+async function getData({ id }) {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`,
+    { next: { revalidate: 10 } }
+  )
+  if (!res.ok) {
+    return notFound();
+  }
+
+  return res.json();
+}
+
+const BlogPost = async ({ params }) => {
+  const { title, body, userId } = await getData(params);
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.info}>
-          <h1 className={styles.title}>Lorem ipsum dolor sit amet.</h1>
+          <h1 className={styles.title}>{title}</h1>
           <p className={styles.desc}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro praesentium nobis, sed saepe dolores suscipit perferendis sequi est eaque. Laborum!
+            {body}
           </p>
           <div className={styles.author}>
             <Image
@@ -18,7 +33,7 @@ const BlogPost = () => {
               height={40}
               className={styles.avatar}
             />
-            <span className={styles.username}>Alex</span>
+            <span className={styles.username}>{userId}</span>
           </div>
         </div>
         <div className={styles.imageContainer}>
