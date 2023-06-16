@@ -9,7 +9,6 @@ import DarkModeComponent from '../dark-mode-component/dark-mode-component';
 const Navbar = () => {
   return (
     <div className={styles.container}>
-
       <Link href='/' className={styles.logo}>Next tutorial</Link>
       <div className={styles.links}>
         <DarkModeComponent />
