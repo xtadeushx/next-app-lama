@@ -28,6 +28,7 @@ export default function Dashboard() {
   //   getData();
   // }, [])
 
+
   /*======================With swr =========================================*/
   const fetcher = (...args) => fetch(...args).then(res => res.json());
 
