@@ -1,15 +1,16 @@
-import styles from './page.module.css'
-import BlogItem from './blog-item/blog-item'
+import styles from './page.module.css';
+import BlogItem from './blog-item/blog-item';
+
 async function getData() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts',
-    { next: { revalidate: 10 } }
-  )
+  const res = await fetch("http://localhost:3000/api/posts", {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    throw new Error("Failed to fetch data");
   }
 
-  return res.json()
+  return res.json();
 }
 export default async function Blog() {
   const data = await getData();
@@ -17,11 +18,11 @@ export default async function Blog() {
     <div className={styles.container}>
       {data.length > 0 && data.map(post => (
         <BlogItem
-          key={post.id}
+          key={post._id}
           desc={post.body}
-          id={post.id}
+          id={post._id}
           title={post.title}
-          img='https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg' />
+          img={post.img} />
       ))}
     </div>
   )
