@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import styles from './page.module.css';
+import { useSession } from 'next-auth/react';
 
 export default function Dashboard() {
   /*======================With useEffect =========================================*/
@@ -28,7 +29,7 @@ export default function Dashboard() {
   //   getData();
   // }, [])
 
-
+  const { data: session, status } = useSession()
   /*======================With swr =========================================*/
   const fetcher = (...args) => fetch(...args).then(res => res.json());
 
@@ -45,7 +46,7 @@ export default function Dashboard() {
   return (
     <div className={styles.container}>{
       data.length > 0 && data?.map(el => (
-        <p className={styles.title}>{el.title}</p>
+        <p key={el.title} className={styles.title}>{el.title}</p>
       ))
     }
 
