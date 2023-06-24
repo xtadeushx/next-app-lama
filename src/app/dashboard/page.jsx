@@ -30,6 +30,8 @@ export default function Dashboard() {
   // }, [])
 
   const { data: session, status } = useSession()
+  console.log(session)
+  console.log(status)
   /*======================With swr =========================================*/
   const fetcher = (...args) => fetch(...args).then(res => res.json());
 
