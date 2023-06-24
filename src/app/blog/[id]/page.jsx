@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 import styles from './page.module.css';
 
+
 async function getData({ id }) {
   const res = await fetch(`http://localhost:3000/api/posts/${id}`,
     { next: { revalidate: 10 } }
@@ -13,6 +14,15 @@ async function getData({ id }) {
   }
 
   return res.json();
+}
+
+export async function generateMetadata({ params }) {
+  const post = await getData(params.id)
+  console.log(post)
+  return {
+    title: post.title,
+    description: post.desc,
+  }
 }
 
 const BlogPost = async ({ params }) => {

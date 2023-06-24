@@ -1,5 +1,9 @@
 import styles from './page.module.css';
 import BlogItem from './blog-item/blog-item';
+export const metadata = {
+  title: "next-blog | blog",
+  description: "This is the page that contains blogs of the users",
+};
 
 async function getData() {
   const res = await fetch("http://localhost:3000/api/posts", {
