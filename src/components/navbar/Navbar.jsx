@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import React from 'react';
 import styles from './navbar.module.css';
-import { LINKS } from '@/constants/links';
 import DarkModeComponent from '../dark-mode-component/dark-mode-component';
+import { LINKS } from 'src/constants/links';
 
 const Navbar = () => {
   return (

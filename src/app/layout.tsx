@@ -1,20 +1,23 @@
-import Navbar from '@/components/navbar/Navbar';
+// import Navbar from '@/components/navbar/Navbar';
 import './globals.css';
-import { Inter, Roboto, Poppins } from 'next/font/google';
-import Footer from '@/components/footer/Footer';
-import { ThemeProvider } from '@/context/ThemeContext';
-import { SessionProvider } from 'next-auth/react';
-import AuthProvider from '@/components/auth-provider/auth-provider';
+import { Inter } from 'next/font/google';
+import AuthProvider from 'src/components/auth-provider/auth-provider';
+import Footer from 'src/components/footer/Footer';
+import Navbar from 'src/components/navbar/Navbar';
+import { ThemeProvider } from 'src/context/ThemeContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
     title: 'next-blog',
     description: 'This is the educational site for developers with a variety of technologies',
 };
+type Props = {
+    children?: React.ReactNode;
+};
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: Props) {
     return (
-        <html lang="en">
+        <html lang="en" >
             <body className={inter.className}>
                 <ThemeProvider>
                     <AuthProvider>
