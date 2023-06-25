@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
-import Button from '@/components/button/Button'
+import Button from 'src/components/button/Button';
+// import Button from '@/components/button/Button'
 
 export const metadata = {
   title: "next-blog | contacts",
