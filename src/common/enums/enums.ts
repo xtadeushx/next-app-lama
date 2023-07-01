@@ -3,8 +3,8 @@ export {
   AuthApiPath,
   UsersApiPath,
   PasswordApiPath
-} from './api/api.js';
-export { HttpCode, HttpMethod } from './http/http.js';
+} from './api/api';
+export { HttpCode, HttpMethod } from './http/http';
 
-export { ExceptionMessage, ExceptionName } from './exception/exception.js';
+export { ExceptionMessage, ExceptionName } from './exception/exception';
 

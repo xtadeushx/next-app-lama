@@ -1,5 +1,4 @@
-// import User from '@/models/User';
-// import connect from '@/utils/db.js';
+
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 import { HttpCode } from 'src/common/enums/enums';
