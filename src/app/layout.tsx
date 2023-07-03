@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import AuthProvider from 'src/components/auth-provider/auth-provider';
 import Footer from 'src/components/footer/Footer';
 import Navbar from 'src/components/navbar/Navbar';
-import { ThemeProvider } from 'src/context/ThemeContext';
+import { ThemeProvider } from 'src/context/ThemeContext.js';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
