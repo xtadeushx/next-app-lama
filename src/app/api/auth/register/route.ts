@@ -21,7 +21,7 @@ export const POST = async (request: Request) => {
 
     try {
         await newUser.save();
-        return new NextResponse('User has been created', {
+        return new NextResponse("User has been created", {
             status: HttpCode.CREATED,
         });
     } catch (err: any) {

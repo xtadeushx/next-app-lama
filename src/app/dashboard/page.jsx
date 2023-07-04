@@ -6,6 +6,7 @@ import useSWR from 'swr';
 
 import styles from './page.module.css';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
   /*======================With useEffect =========================================*/
@@ -29,13 +30,23 @@ export default function Dashboard() {
   //   getData();
   // }, [])
 
-  const { data: session, status } = useSession()
-  console.log(session)
-  console.log(status)
-  /*======================With swr =========================================*/
+  const session = useSession();
+  const router = useRouter();
+
   const fetcher = (...args) => fetch(...args).then(res => res.json());
 
-  const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/posts?limit=3', fetcher);
+  const { data, error, isLoading } = useSWR(`https://api/posts?username=${session?.data?.user?.name}`, fetcher);
+
+  console.log('data', data);
+
+  if (session.status === "loading") {
+    return <p>Loading...</p>
+  }
+
+  if (session.status === "unauthenticated") {
+    router?.push('/dashboard/login')
+  }
+  /*======================With swr =========================================*/
 
   if (isLoading) {
     return <h2>Loading...</h2>
@@ -45,13 +56,14 @@ export default function Dashboard() {
     return <h2>{error}</h2>
   }
 
-  return (
-    <div className={styles.container}>{
-      data.length > 0 && data?.map(el => (
-        <p key={el.title} className={styles.title}>{el.title}</p>
-      ))
-    }
-
-    </div>
-  )
+  if (session.status === "authenticated") {
+    return (
+      <div className={styles.container}>{
+        data.length > 0 && data?.map(el => (
+          <p key={el.title} className={styles.title}>{el.title}</p>
+        ))
+      }
+      </div>
+    )
+  }
 }
